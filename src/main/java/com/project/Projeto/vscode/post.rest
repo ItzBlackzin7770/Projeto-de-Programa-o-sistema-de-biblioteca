@@ -1,0 +1,12 @@
+
+POST http://localhost:8080/v1/emprestimos/create
+Content-Type: application/json
+
+{
+    "id_usuario": 1,
+    "id_livro": 2,
+    "data_emprestimo": "2026-05-18",
+    "data_devolucao": "2026-06-18",
+    "status": "ativo",
+    "multa": 0.00
+}

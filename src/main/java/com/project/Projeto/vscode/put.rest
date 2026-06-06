@@ -1,0 +1,7 @@
+PUT http://localhost:8080/v1/users/1
+Content-Type: application/json
+
+{
+    "name": "junho",
+    "pass": "786543221"
+}
