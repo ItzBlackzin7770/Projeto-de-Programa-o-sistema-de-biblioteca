@@ -5,6 +5,7 @@ import com.project.Projeto.dto.UsuariosDTO;
 import com.project.Projeto.services.UsuariosService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.*;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -30,8 +31,9 @@ public class UsuariosController {
     }
 
     @GetMapping("/users/{telefone}")
-    public UsuariosEntity findByTelefone(@PathVariable String telefone){
-        return usuariosService.findByTelefone(telefone);
+    public ResponseEntity<UsuariosEntity> findByTelefone(@PathVariable String telefone){
+        UsuariosEntity usuario = usuariosService.findByTelefone(telefone);
+        return ResponseEntity.ok(usuario);
     }
 
 }

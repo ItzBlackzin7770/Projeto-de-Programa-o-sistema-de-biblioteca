@@ -29,6 +29,6 @@ public class EditorasController {
 
     @GetMapping("/{telefone}")
     public EditorasEntity findByTelefone(@PathVariable String telefone){
-        return editorasService.findByTelefone(telefone)
+        return editorasService.findByTelefone(telefone);
     }
 }

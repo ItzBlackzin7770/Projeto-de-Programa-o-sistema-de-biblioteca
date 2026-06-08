@@ -1,6 +1,7 @@
 package com.project.Projeto.handler;
 
 import com.project.Projeto.exceptions.BadRequestException;
+import com.project.Projeto.exceptions.InternalServerErrorException;
 import com.project.Projeto.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -11,6 +12,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalHandlerException {
+
+    @ExceptionHandler(InternalServerErrorException.class)
+    public ResponseEntity<ErrorResponse> InternalErrorException(InternalServerErrorException ex){
+        ErrorResponse errorResponse = ErrorResponse.builder(ex, ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR))
+                .build();
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ErrorResponse> BadRequestException(BadRequestException ex){

@@ -3,6 +3,7 @@ package com.project.Projeto.services;
 import com.project.Projeto.database.model.UsuariosEntity;
 import com.project.Projeto.database.repository.UsuarioRepository;
 import com.project.Projeto.dto.UsuariosDTO;
+import com.project.Projeto.exceptions.NotFoundException;
 import lombok.*;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,11 @@ public class UsuariosService {
     }
 
     public UsuariosEntity findByTelefone(String telefone){
-        return usuarioRepository.findByTelefone(telefone);
+        UsuariosEntity usuarios = usuarioRepository.findByTelefone(telefone);
+
+        if(usuarios != null){
+            new NotFoundException("Usuario não identificado");
+        }
+        return  usuarios;
     }
 }
