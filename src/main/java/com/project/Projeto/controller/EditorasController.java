@@ -27,8 +27,8 @@ public class EditorasController {
         return editorasService.createEditora(editorasDTO);
     }
 
-    @GetMapping("/{telefone}")
-    public EditorasEntity findByTelefone(@PathVariable String telefone){
+    @GetMapping("/editoras")
+    public EditorasEntity findByTelefone(@RequestParam String telefone){
         return editorasService.findByTelefone(telefone);
     }
 }

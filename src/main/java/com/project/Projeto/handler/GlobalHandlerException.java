@@ -23,7 +23,12 @@ public class GlobalHandlerException {
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ErrorResponse> BadRequestException(BadRequestException ex){
-        ErrorResponse errorResponse = ErrorResponse.builder(ex, ProblemDetail.forStatus(HttpStatus.BAD_REQUEST))
+
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+        problemDetail.setTitle("Má requisição enviada ao servidor");
+        problemDetail.setDetail("Algo passado no JSON foi passado de forma incorreta, corrija seu JSON");
+
+        ErrorResponse errorResponse = ErrorResponse.builder(ex, problemDetail)
                 .build();
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
@@ -32,7 +37,12 @@ public class GlobalHandlerException {
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorResponse> NotFoundException(NotFoundException ex){
 
-        ErrorResponse errorResponse = ErrorResponse.builder(ex, ProblemDetail.forStatus(HttpStatus.NOT_FOUND)).build();
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
+        problemDetail.setTitle("Dados não encontrados");
+        problemDetail.setDetail("os dados ao qual está procurando não foi achado");
+
+        ErrorResponse errorResponse = ErrorResponse.builder(ex, problemDetail).build();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 }
+

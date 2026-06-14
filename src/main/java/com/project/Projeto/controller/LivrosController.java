@@ -6,10 +6,7 @@ import com.project.Projeto.services.LivrosService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,8 +24,14 @@ public class LivrosController {
     }
 
     @PostMapping("/create")
-    public String createLivros(@Valid LivrosDTO livrosDTO){
+    public String createLivros(@Valid @RequestBody LivrosDTO livrosDTO){
         livrosService.createLivro(livrosDTO);
         return "Livro criado com sucesso";
+    }
+
+    @GetMapping("/livros")
+    public LivrosEntity findByName(@RequestParam String name) {
+        System.out.println("Nome encontrado: " + name);
+        return livrosService.findByName(name);
     }
 }

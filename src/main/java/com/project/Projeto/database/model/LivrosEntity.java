@@ -34,8 +34,8 @@ public class LivrosEntity {
     @Column(nullable = false)
     private Integer disponiveis;
 
-    @Column(nullable = false)
-    private String gênero;
+    @Column(nullable = false, name = "gênero")
+    private String genero;
 
     @Column(nullable = false, unique = true, columnDefinition = "INT(5)")
     private Integer codigo;

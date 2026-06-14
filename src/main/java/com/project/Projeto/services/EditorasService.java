@@ -3,6 +3,7 @@ package com.project.Projeto.services;
 import com.project.Projeto.database.model.EditorasEntity;
 import com.project.Projeto.database.repository.EditorasRepository;
 import com.project.Projeto.dto.EditorasDTO;
+import com.project.Projeto.exceptions.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,14 @@ public class EditorasService {
     }
 
     public EditorasEntity findByTelefone(String telefone){
-        return editorasRepository.findByTelefone(telefone);
+
+        EditorasEntity entity = editorasRepository.findByTelefone(telefone);
+
+        if (entity == null) {
+            throw new NotFoundException("Editora não encontrada");
+        }
+
+        return entity;
+
     }
 }

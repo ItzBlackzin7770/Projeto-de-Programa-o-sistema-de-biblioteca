@@ -45,7 +45,7 @@ public class LivrosService {
                 .cadastro(livrosDTO.getCadastro())
                 .produzidos(livrosDTO.getProduzidos())
                 .disponiveis(livrosDTO.getDisponiveis())
-                .gênero(livrosDTO.getGenero())
+                .genero(livrosDTO.getGenero())
                 .codigo(livrosDTO.getCodigo())
                 .editorasEntity(editorasEntity)
                 .autores(autoresEntities)
@@ -54,7 +54,15 @@ public class LivrosService {
         livrosRepository.save(livrosEntity);
     }
 
-    public LivrosEntity findByNome(String name){
-        return livrosRepository.findByName(name);
+    public LivrosEntity findByName(String name){
+        LivrosEntity livrosEntity = livrosRepository.findByName(name);
+
+
+        if (livrosEntity == null) {
+            throw new NotFoundException("Livro não encontrada");
+        }
+
+        return livrosEntity;
+
     }
 }

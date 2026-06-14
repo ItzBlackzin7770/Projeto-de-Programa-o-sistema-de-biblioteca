@@ -32,9 +32,10 @@ public class UsuariosService {
     public UsuariosEntity findByTelefone(String telefone){
         UsuariosEntity usuarios = usuarioRepository.findByTelefone(telefone);
 
-        if(usuarios != null){
-            new NotFoundException("Usuario não identificado");
+        if (usuarios == null){
+             throw new NotFoundException("Usuário não encontrado");
         }
-        return  usuarios;
+
+        return usuarios;
     }
 }
