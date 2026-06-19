@@ -30,11 +30,11 @@ public class UsuariosController {
         usuariosService.saveUsuario(usuariosDTO);
     }
 
+
     @GetMapping("/users")
     public ResponseEntity<UsuariosEntity> findByTelefone(@RequestParam String telefone){
-        System.out.println("Telefone recebido: " + telefone);
         UsuariosEntity usuario = usuariosService.findByTelefone(telefone);
-        System.out.println("Usuario encontrado: " + usuario);
+        System.out.println(usuario);
         return ResponseEntity.ok(usuario);
     }
 
