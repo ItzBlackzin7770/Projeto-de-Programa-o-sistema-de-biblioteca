@@ -24,7 +24,7 @@ public class AutoresController {
     }
 
     @PostMapping("/create")
-    public String createAutor(@Valid AutoresDTO autoresDTO){
+    public String createAutor(@Valid @RequestBody AutoresDTO autoresDTO){
         return autoresService.createAutores(autoresDTO);
     }
 

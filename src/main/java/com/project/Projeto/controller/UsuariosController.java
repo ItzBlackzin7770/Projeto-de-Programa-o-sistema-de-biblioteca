@@ -37,6 +37,5 @@ public class UsuariosController {
         System.out.println(usuario);
         return ResponseEntity.ok(usuario);
     }
-
 }
 

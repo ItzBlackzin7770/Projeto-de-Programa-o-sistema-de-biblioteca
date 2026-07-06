@@ -23,7 +23,7 @@ public class EditorasController {
     }
 
     @PostMapping("/create")
-    public String createEditora(@Valid EditorasDTO editorasDTO){
+    public String createEditora(@Valid @RequestBody EditorasDTO editorasDTO){
         return editorasService.createEditora(editorasDTO);
     }
 

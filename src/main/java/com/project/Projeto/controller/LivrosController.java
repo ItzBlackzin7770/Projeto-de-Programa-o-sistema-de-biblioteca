@@ -2,6 +2,7 @@ package com.project.Projeto.controller;
 
 import com.project.Projeto.database.model.LivrosEntity;
 import com.project.Projeto.dto.LivrosDTO;
+import com.project.Projeto.dto.Projections.LivrosProjection;
 import com.project.Projeto.services.LivrosService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -33,5 +34,10 @@ public class LivrosController {
     public LivrosEntity findByName(@RequestParam String name) {
         System.out.println("Nome encontrado: " + name);
         return livrosService.findByName(name);
+    }
+
+    @GetMapping("/get")
+    public List<LivrosProjection> getAllLivros(){
+        return livrosService.getAllLivros();
     }
 }

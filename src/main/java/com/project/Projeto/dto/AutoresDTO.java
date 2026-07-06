@@ -31,5 +31,5 @@ public class AutoresDTO {
     @NotBlank
     private String nacionalidade;
 
-    private Set<LivrosEntity> livros_id;
+    private Set<Integer> livros_id;
 }

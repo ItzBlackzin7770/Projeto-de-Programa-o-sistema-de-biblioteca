@@ -7,6 +7,7 @@ import com.project.Projeto.database.repository.AutoresRepository;
 import com.project.Projeto.database.repository.EditorasRepository;
 import com.project.Projeto.database.repository.LivrosRepository;
 import com.project.Projeto.dto.LivrosDTO;
+import com.project.Projeto.dto.Projections.LivrosProjection;
 import com.project.Projeto.exceptions.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -64,5 +65,12 @@ public class LivrosService {
 
         return livrosEntity;
 
+    }
+
+    public List<LivrosProjection> getAllLivros(){
+
+        System.out.println(livrosRepository.getAllLivros());
+
+        return livrosRepository.getAllLivros();
     }
 }

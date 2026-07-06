@@ -54,7 +54,7 @@ public class LivrosEntity {
 
     // RELACIONAMENTO COM AUTORES
     @ManyToMany
-    @JoinTable(name = "autores_livros", joinColumns = @JoinColumn(name = "autor_id"), inverseJoinColumns = @JoinColumn(name = "livro_id"))
+    @JoinTable(name = "autores_livros", joinColumns = @JoinColumn(name = "livro_id"), inverseJoinColumns = @JoinColumn(name = "autor_id"))
     @JsonIgnoreProperties("livros")
     private Set<AutoresEntity> autores = new HashSet<>();
 }

@@ -2,6 +2,7 @@ package com.project.Projeto.controller;
 
 import com.project.Projeto.database.model.EmprestimosEntity;
 import com.project.Projeto.dto.EmprestimosDTO;
+import com.project.Projeto.dto.Projections.EmprestimosProjection;
 import com.project.Projeto.services.EmprestimosService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +26,10 @@ public class EmprestimosController {
     @PostMapping("/create")
     public void createEmprestimos(@Valid @RequestBody EmprestimosDTO emprestimosDTO){
         emprestimosService.createEmprestimo(emprestimosDTO);
+    }
+
+    @GetMapping("/get")
+    public List<EmprestimosProjection> getAllEmprestimos(){
+        return emprestimosService.getAllEmprestimos();
     }
 }
