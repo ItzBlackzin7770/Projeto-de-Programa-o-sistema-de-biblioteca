@@ -2,6 +2,8 @@ package com.project.Projeto.database.repository;
 
 import com.project.Projeto.database.model.EmprestimosEntity;
 import com.project.Projeto.dto.Projections.EmprestimosProjection;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.NativeQuery;
 
@@ -25,5 +27,27 @@ public interface EmprestimosRepository extends JpaRepository<EmprestimosEntity, 
             INNER JOIN usuarios us ON us.id = em.usuario_id
             """)
     List<EmprestimosProjection> getAllEmprestimos();
+
+    @NativeQuery(
+            value = """
+            SELECT
+                em.id           IdEmprestimo,
+                em.data_emprestimo      DataEmprestimo,
+                lv.id       IdLivro,
+                lv.nome         NomeLivro,
+                us.id           IdUsuario,
+                us.nome         NomeUsuario,
+                em.data_devolucao       DataDevolucaoEmprestimo,
+                em.status       StatusEmprestimo,
+                em.multa        Multa
+            FROM emprestimos em
+            INNER JOIN livros lv ON lv.id = em.livro_id
+            INNER JOIN usuarios us ON us.id = em.usuario_id
+            """, countQuery = """
+            SELECT COUNT(em.id)
+            FROM emprestimos em
+            INNER JOIN livros lv ON lv.id = em.livro_id
+            INNER JOIN usuarios us ON us.id = em.usuario_id""")
+    Page<EmprestimosProjection> getAllEmprestimosPage(Pageable pageable);
 
 }

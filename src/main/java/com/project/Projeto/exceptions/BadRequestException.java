@@ -1,6 +1,6 @@
 package com.project.Projeto.exceptions;
 
-public class BadRequestException extends RuntimeException {
+public class BadRequestException extends org.apache.coyote.BadRequestException {
     public BadRequestException(String message){
         super(message);
     }

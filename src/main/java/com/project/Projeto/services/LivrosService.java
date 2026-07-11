@@ -10,6 +10,8 @@ import com.project.Projeto.dto.LivrosDTO;
 import com.project.Projeto.dto.Projections.LivrosProjection;
 import com.project.Projeto.exceptions.NotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -28,7 +30,7 @@ public class LivrosService {
         return livrosRepository.findAll();
     }
 
-    public void createLivro(LivrosDTO livrosDTO){
+    public void createLivro(LivrosDTO livrosDTO) throws  NotFoundException{
         EditorasEntity editorasEntity = editorasRepository.findById(livrosDTO.getId_editora())
                 .orElseThrow(() -> new NotFoundException("Editora não identificada"));
 
@@ -55,7 +57,7 @@ public class LivrosService {
         livrosRepository.save(livrosEntity);
     }
 
-    public LivrosEntity findByName(String name){
+    public LivrosEntity findByName(String name) throws NotFoundException{
         LivrosEntity livrosEntity = livrosRepository.findByName(name);
 
 
@@ -72,5 +74,9 @@ public class LivrosService {
         System.out.println(livrosRepository.getAllLivros());
 
         return livrosRepository.getAllLivros();
+    }
+
+    public Page<LivrosProjection> getAllLivrosPage(Integer page, Integer size){
+        return livrosRepository.getAllLivrosPage(PageRequest.of(page, size));
     }
 }

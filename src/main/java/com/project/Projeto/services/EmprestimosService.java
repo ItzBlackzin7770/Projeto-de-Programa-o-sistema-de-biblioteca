@@ -11,6 +11,8 @@ import com.project.Projeto.dto.EmprestimosDTO;
 import com.project.Projeto.dto.Projections.EmprestimosProjection;
 import com.project.Projeto.exceptions.NotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -29,7 +31,7 @@ public class EmprestimosService {
 
 
 
-    public void createEmprestimo(EmprestimosDTO emprestimosDTO) {
+    public void createEmprestimo(EmprestimosDTO emprestimosDTO) throws NotFoundException {
 
         UsuariosEntity usuariosEntity = usuarioRepository.findById(emprestimosDTO.getId_usuario())
                 .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
@@ -52,5 +54,9 @@ public class EmprestimosService {
 
     public List<EmprestimosProjection> getAllEmprestimos(){
         return emprestimosRepository.getAllEmprestimos();
+    }
+
+    public Page<EmprestimosProjection> getAllEmprestimosPage(Integer page, Integer size){
+        return emprestimosRepository.getAllEmprestimosPage(PageRequest.of(page, size));
     }
 }

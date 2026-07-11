@@ -1,8 +1,6 @@
 package com.project.Projeto.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.project.Projeto.database.model.AutoresEntity;
-import com.project.Projeto.database.model.EmprestimoStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

@@ -16,5 +16,10 @@ public interface UsuarioRepository extends JpaRepository<UsuariosEntity, Integer
             """)
     public UsuariosEntity findByTelefone(@Param("telefone") String telefone);
 
+    @Query(value = """
+            SELECT u FROM UsuariosEntity u
+            WHERE UPPER(u.email) = UPPER(:email)
+            """)
+    Optional<UsuariosEntity> findByEmail(@Param("email") String email);
 
 }

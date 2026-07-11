@@ -2,6 +2,7 @@ package com.project.Projeto.controller;
 
 import com.project.Projeto.database.model.EditorasEntity;
 import com.project.Projeto.dto.EditorasDTO;
+import com.project.Projeto.exceptions.NotFoundException;
 import com.project.Projeto.services.EditorasService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class EditorasController {
     }
 
     @GetMapping("/editoras")
-    public EditorasEntity findByTelefone(@RequestParam String telefone){
+    public EditorasEntity findByTelefone(@RequestParam String telefone) throws NotFoundException {
         return editorasService.findByTelefone(telefone);
     }
 }

@@ -24,7 +24,7 @@ public class AutoresService {
         return autoresRepository.findAll();
     }
 
-    public String createAutores(AutoresDTO autoresDTO){
+    public String createAutores(AutoresDTO autoresDTO) throws NotFoundException{
         Set<LivrosEntity> livrosEntities = new HashSet<>();
 
         for (Integer autores : autoresDTO.getLivros_id()) {
@@ -45,7 +45,7 @@ public class AutoresService {
         return "Autor criado com sucesso";
     }
 
-    public AutoresEntity findByNome(String nome){
+    public AutoresEntity findByNome(String nome) throws NotFoundException{
         return autoresRepository.findByNome(nome).orElseThrow(() -> new NotFoundException("Autor não encontrado"));
     }
 }

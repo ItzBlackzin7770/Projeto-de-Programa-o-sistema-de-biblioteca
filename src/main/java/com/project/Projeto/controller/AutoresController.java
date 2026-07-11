@@ -2,6 +2,7 @@ package com.project.Projeto.controller;
 
 import com.project.Projeto.database.model.AutoresEntity;
 import com.project.Projeto.dto.AutoresDTO;
+import com.project.Projeto.exceptions.NotFoundException;
 import com.project.Projeto.services.AutoresService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,12 @@ public class AutoresController {
     }
 
     @PostMapping("/create")
-    public String createAutor(@Valid @RequestBody AutoresDTO autoresDTO){
+    public String createAutor(@Valid @RequestBody AutoresDTO autoresDTO) throws NotFoundException{
         return autoresService.createAutores(autoresDTO);
     }
 
     @GetMapping("/find")
-    public AutoresEntity findByNome(@RequestParam String nome){
+    public AutoresEntity findByNome(@RequestParam String nome) throws NotFoundException {
         return autoresService.findByNome(nome);
     }
 }

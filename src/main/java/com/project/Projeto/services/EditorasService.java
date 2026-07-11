@@ -31,7 +31,7 @@ public class EditorasService {
         return "Editora criada com sucesso";
     }
 
-    public EditorasEntity findByTelefone(String telefone){
+    public EditorasEntity findByTelefone(String telefone) throws NotFoundException{
 
         EditorasEntity entity = editorasRepository.findByTelefone(telefone);
 

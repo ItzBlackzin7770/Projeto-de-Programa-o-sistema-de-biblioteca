@@ -22,4 +22,6 @@ public class UsuariosDTO {
     private LocalDate idade;
     @NotBlank
     private String telefone;
+    @NotBlank
+    private String email;
 }

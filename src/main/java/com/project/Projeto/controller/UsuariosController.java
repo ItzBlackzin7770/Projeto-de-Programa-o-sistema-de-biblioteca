@@ -2,6 +2,7 @@ package com.project.Projeto.controller;
 
 import com.project.Projeto.database.model.UsuariosEntity;
 import com.project.Projeto.dto.UsuariosDTO;
+import com.project.Projeto.exceptions.NotFoundException;
 import com.project.Projeto.services.UsuariosService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -32,10 +33,15 @@ public class UsuariosController {
 
 
     @GetMapping("/users")
-    public ResponseEntity<UsuariosEntity> findByTelefone(@RequestParam String telefone){
+    public ResponseEntity<UsuariosEntity> findByTelefone(@RequestParam String telefone) throws NotFoundException {
         UsuariosEntity usuario = usuariosService.findByTelefone(telefone);
         System.out.println(usuario);
         return ResponseEntity.ok(usuario);
+    }
+
+    @DeleteMapping("/delete")
+    public void deleteUser(@RequestParam Integer id) throws NotFoundException{
+        usuariosService.deleteUser(id);
     }
 }
 
