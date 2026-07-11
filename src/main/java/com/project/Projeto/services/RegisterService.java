@@ -28,8 +28,8 @@ public class RegisterService {
             new BadRequestException("Usuário já cadastrrado");
         }
 
-        RolesEntity rolesEntity = rolesRepository.findByRoles(RolesType.USUARIO.name()).orElseGet(() -> rolesRepository.save(RolesEntity.builder()
-                        .roles(RolesType.USUARIO.name())
+        RolesEntity rolesEntity = rolesRepository.findByRoles(RolesType.ROLE_USUARIO.name()).orElseGet(() -> rolesRepository.save(RolesEntity.builder()
+                        .roles(RolesType.ROLE_USUARIO.name())
                 .build()));
 
         UsuariosEntity usuariosEntity = UsuariosEntity.builder()
