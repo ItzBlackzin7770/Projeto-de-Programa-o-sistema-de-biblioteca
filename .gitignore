@@ -1,7 +1,5 @@
 <<<<<<< HEAD
 HELP.md
-.env
-pom.xml
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -60,3 +58,5 @@ build/
 hs_err_pid*
 replay_pid*
 >>>>>>> 004f151f9cf02837d239a51cd14c59e9027d420f
+
+.env
